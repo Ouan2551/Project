@@ -1,0 +1,1 @@
+x = int(input("type number 1 : "))
