@@ -29,6 +29,7 @@ void staircase(int n) {
 
 int main()
 {
+    ios::sync_with_stdio(0);cout.tie(0);cin.tie(0);
     string n_temp;
     getline(cin, n_temp);
 
