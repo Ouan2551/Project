@@ -18,19 +18,16 @@ vector<int> gradingStudents(vector<int> grades) {
     {
         if (grades[i] < 38)
         {
-            cout << "just check" << '\n';
+            continue;
         }
         else
         {
-            for (int j = 1; j <= 100; j = j * 5)
+            for (int j = 0; j <= 100; j = j + 5)
             {
-                cout << 1 << '\n';
                 if (j - grades[i] < 3 && j - grades[i] > 0)
                 {
                     grades[i] = j;
-                    cout << "result : " << j - grades[i] << '\n';
-                    cout << "j : " << j << '\n';
-                    continue;
+                    break;
                 }
             }
         }
