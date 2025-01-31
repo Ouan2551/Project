@@ -16,23 +16,24 @@ vector<int> gradingStudents(vector<int> grades) {
     int m = grades.size();
     for (int i = 0; i < m; i++)
     {
-            if (grades[i] < 38)
+        if (grades[i] < 38)
+        {
+            cout << "just check" << '\n';
+        }
+        else
+        {
+            for (int j = 1; j <= 100; j = j * 5)
             {
                 cout << 1 << '\n';
-                continue;
-            }
-            else
-            {
-                for (int j = 1; j <= 100; j = j * 5)
+                if (j - grades[i] < 3 && j - grades[i] > 0)
                 {
-                    if (j - grades[i] < 3 && j - grades[i] > 0)
-                    {
-                        grades[i] = j;
-                        cout << "j : " << j << '\n';
-                        continue;
-                    }
+                    grades[i] = j;
+                    cout << "result : " << j - grades[i] << '\n';
+                    cout << "j : " << j << '\n';
+                    continue;
                 }
             }
+        }
     }
     return grades;
 }
