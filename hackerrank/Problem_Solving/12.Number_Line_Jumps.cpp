@@ -5,19 +5,6 @@ using namespace std;
 string ltrim(const string &);
 string rtrim(const string &);
 vector<string> split(const string &);
-
-/*
- * Complete the 'kangaroo' function below.
- *
- * The function is expected to return a STRING.
- * The function accepts following parameters:
- *  1. INTEGER x1
- *  2. INTEGER v1
- *  3. INTEGER x2
- *  4. INTEGER v2
- */
-// x1 and v1 is first position and speed kangaroo1
-// x2 and v2 is second position and speed kangaroo2
 string kangaroo(int x1, int v1, int x2, int v2) {
     string can_do = "";
     // just chk x1 v1 x2 v2 normal
@@ -45,7 +32,6 @@ string kangaroo(int x1, int v1, int x2, int v2) {
                 can_do = "NO";
             }
         }
-        // loop check overthere
     }
     return can_do;
 }
