@@ -1,7 +1,7 @@
 count = int(input())
 point = []
 for i in range(0,count,1):
-    point[i] = int(input())
+    point.append()
 
 for i in range(0,count,1):
     print(point[i])
