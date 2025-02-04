@@ -1,45 +1,40 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import json
-import math
 from scipy.constants import c  # Speed of light
 
-# Open the JSON file with data
+# Load data from JSON file
 with open(r"D:\Important files Nannaphat\coding\Project\SUT_Astro_coding_challenge #1\Challenge2_data.json", "r") as file:
     data = json.load(file)
 
-# Get data from JSON file
+# Extract data from JSON
 apparent_magnitude = data["Apparent Magitude (m)"]
 absolute_magnitude = data["Absolute Magnitude (M)"]
 redshift = data["Redshift (z)"]
 
-# Calculate distance (d) using distance modulus formula
-distance = []
-for m, M in zip(apparent_magnitude, absolute_magnitude):
-    d = math.exp((m - M + 5) / 5)
-    distance.append(d)
+# Calculate distance using the distance modulus formula: d = 10^((m - M + 5)/5)
+distance = 10 ** ((np.array(apparent_magnitude) - np.array(absolute_magnitude) + 5) / 5)
 
-# Calculate velocity (v) using redshift and speed of light
-velocity = []
-for z in redshift:
-    v = c * z  # v = z * speed of light
-    velocity.append(v)
+# Calculate velocity using redshift: v = z * speed of light
+velocity = np.array(redshift) * c
 
 # Sort distance and velocity together
-distance, velocity = zip(*sorted(zip(distance, velocity)))
+sorted_indices = np.argsort(distance)
+distance = distance[sorted_indices]
+velocity = velocity[sorted_indices]
 
-# Convert lists to numpy arrays for calculations
-distance = np.array(distance)
-velocity = np.array(velocity)
+# Calculate the slope of the distance-velocity relationship
+# Using numpy's gradient function: slope = dv/dd
+slope = np.gradient(velocity, distance)
 
-# Calculate slope using numpy's gradient function
-slope = np.gradient(velocity, distance) * 3.242542 * (10 ** -19)
+# Convert slope to Hubble constant units (1/s)
+slope *= 3.242542e-19  # Conversion factor from km/s/Mpc to 1/s
 
-# Filter out NaN values
+# Filter out NaN values (if any)
 valid_slopes = slope[~np.isnan(slope)]
 
-# Calculate the sum, average, and t value
-if len(valid_slopes) > 0:
+# Calculate the sum, average, and t value (Hubble time)
+if valid_slopes.size > 0:
     sum_of_slopes = np.sum(valid_slopes)
     average_slope = np.mean(valid_slopes)
     t_value = 1 / average_slope if average_slope != 0 else float('inf')
@@ -54,11 +49,11 @@ print(f"Average slope: {average_slope}")
 print(f"t value (in seconds): {t_value}")
 print(f"t value (in years): {t_value / 31556926}")  # Convert seconds to years
 
-# Plot the graph
+# Plot the distance-velocity graph
 plt.figure(figsize=(8, 6))
-plt.plot(distance, velocity, label="Distance vs Velocity")
-plt.xlabel("Distance (d)")
-plt.ylabel("Velocity (v)")
+plt.plot(distance, velocity, label="Distance vs Velocity", marker='o', linestyle='-', markersize=5)
+plt.xlabel("Distance (Mpc)")
+plt.ylabel("Velocity (km/s)")
 plt.title("Distance vs Velocity")
 plt.legend()
 plt.grid(True)
