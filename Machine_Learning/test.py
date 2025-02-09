@@ -1,23 +1,31 @@
-import numpy as np
+import numpy
 import matplotlib.pyplot as plt
 
-# Define the range for x (real part)
-x = np.linspace(0, 5, 500)  # x > 0 for arg(z) = pi/4
-y = x  # y = x for arg(z) = pi/4
+# First scatter plot data
+x = [5, 7, 8, 7, 2, 17, 2, 9, 4, 11, 12, 9, 6]
+y = [99, 86, 87, 88, 111, 86, 103, 87, 94, 78, 77, 85, 86]
 
-# Plot the graph
-plt.figure(figsize=(6, 6))
-plt.plot(x, y, label="arg(z) = π/4", color="blue")
-plt.axhline(0, color="black", linewidth=0.8, linestyle="--")  # x-axis
-plt.axvline(0, color="black", linewidth=0.8, linestyle="--")  # y-axis
+# Second scatter plot data using normal distributions
+m = numpy.random.normal(5.0, 1.0, 1000)
+n = numpy.random.normal(10.0, 2.0, 1000)
 
-# Add labels and title
-plt.title("Graph of {z | arg(z) = π/4}", fontsize=14)
-plt.xlabel("Re(z)", fontsize=12)
-plt.ylabel("Im(z)", fontsize=12)
-plt.grid(alpha=0.3)
-plt.legend()
-plt.axis("equal")
+# Create a figure with two subplots: 1 row, 2 columns
+plt.figure(figsize=(12, 6))
 
-# Show the graph
+# First subplot: Scatter plot for x, y
+plt.subplot(1, 2, 1)  # (rows, columns, index of subplot)
+plt.scatter(x, y)
+plt.title('First Scatter Plot')
+plt.xlabel('X axis')
+plt.ylabel('Y axis')
+
+# Second subplot: Scatter plot for m, n
+plt.subplot(1, 2, 2)  # (rows, columns, index of subplot)
+plt.scatter(m, n)
+plt.title('Second Scatter Plot')
+plt.xlabel('M axis')
+plt.ylabel('N axis')
+
+# Show both plots
+plt.tight_layout()  # Adjusts layout so that plots don't overlap
 plt.show()
