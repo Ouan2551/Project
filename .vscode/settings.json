@@ -65,9 +65,11 @@
     "iosfwd": "cpp"
   },
   "cSpell.words": [
+    "linespace",
     "linestyle",
     "linregress",
     "Magitude",
+    "polyfit",
     "xlabel",
     "ylabel"
   ],
