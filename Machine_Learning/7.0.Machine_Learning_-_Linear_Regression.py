@@ -2,6 +2,7 @@
 # how it work => use relationship between data point
 # and draw linear regression
 
+# in machine learning just use it for predict the output value in future
 import matplotlib.pyplot as plt
 from scipy import stats # use this library to draw regression line
 

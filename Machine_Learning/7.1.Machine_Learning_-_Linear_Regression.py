@@ -11,6 +11,8 @@ def myfunc(x):
 
 mymodel = list(map(myfunc, x))
 
+print("r : ", r)
+# you will get low value r is not good for linear regression
 plt.scatter(x, y)
 plt.plot(x, mymodel)
 plt.show()
