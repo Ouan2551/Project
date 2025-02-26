@@ -1,3 +1,3 @@
-import numpy as np
-
-print(np.__version__)
+x = int(input())
+for i in range(0, x, 1):
+    print(i)
