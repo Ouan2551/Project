@@ -54,3 +54,20 @@ dim = (800, int(h*ratio))
 resize_aspect = cv2.resize(image, dim)
 cv2.imshow("Resized Image : ", resize_aspect)
 cv2.waitKey(0)
+
+# 5) Drawing a Rectangle
+# copy image from original
+output = image.copy()
+
+# it use 5 argument
+# (image, Top-left corner co-ordinates, Bottom-right corner co-ordinates, color (rgb format), line width)
+rectangle = cv2.rectangle(output, (1500, 900), (600, 400), (255, 0, 0), 2)
+cv2.imshow("Rectangle Image : ", rectangle)
+
+# 6) Display text
+output = image.copy()
+
+# it use 7 argument
+# (Image, Text to display, Bottom-left corner co-ordinates (from where the text should start),
+# Font, Font size, Color (BGR format), Line width)
+text = cv2.putText(output, 'OpenCV Demo', (500, 550), cv2.FONT_HERSHEY_SIMPLEX, 4, (255, 0, 0), 2)
