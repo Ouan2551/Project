@@ -7,6 +7,7 @@ import cv2
 image = cv2.imread(r"D:\Important files Nannaphat\coding\Project\Machine_Learning\python+opencv\learn\image.jpg")
 
 # extract height and width of image
+# structure image.shape[width, height, Value RGB] use :2 mean select first 2 value is width and height
 h, w = image.shape[:2]
 
 # display height and width
@@ -15,6 +16,10 @@ print("Height = {}, Width = {}".format(h,w))
 # 2) Extracting the RGB Values of a Pixel
 # passing with 100, 100 height and weight
 (R, G, B) = image[100, 100]
+
+# warning command image[] not same as image.shape[]
+# because image[] is care about pixel in picture
+# but image.shape[] care about all of picture
 
 # display pixel values
 print("R = {}, G = {}, B = {}".format(R, G, B))
@@ -37,11 +42,13 @@ cv2.waitKey(0)
 
 # problem is it chance aspect ratio
 # calculate ratio
-ratio = 800/w
+ratio = 800/w # zoom or short picture more than old 800 pixel
 
 # create tuple contain width and height
 # tuple is data type can store multiple type (can't change value)
 dim = (800, int(h*ratio))
+# 800 in this is new width
+# h*ration is new heigh
 
 # resize image
 resize_aspect = cv2.resize(image, dim)
