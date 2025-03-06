@@ -3,7 +3,7 @@ import cv2
 path = r"D:\Important files Nannaphat\coding\Project\Machine_Learning\python+opencv\learn\work_with_picture\started\geek1.png"
 image = cv2.imread(path)
 cv2.imshow("picture : ", image)
-cv2.waitKey(0);
+cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 # output in grayscale mode (black and white picture)
@@ -17,7 +17,7 @@ image = cv2.imread(path, 0)
 image1 = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
 cv2.imshow("image : ", image)
 cv2.imshow("image1 : ", image1)
-cv2.waitKey(0);
+cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 # comparison flag value (number) vs constant name (long command)
@@ -25,3 +25,13 @@ cv2.destroyAllWindows()
 # 0 => cv2.IMREAD_GRAYSCALE
 # -1 => cv2.IMREAD_UNCHANGED (include transparency if it have)
 
+# explain how to close image window
+# close all window
+cv2.destroyAllWindows()
+
+# close specific name window
+cv2.destroyAllWindows('Window Name')
+
+# use wait_key() to close
+cv2.waitKey(0)
+cv2.destroyAllWindows()
