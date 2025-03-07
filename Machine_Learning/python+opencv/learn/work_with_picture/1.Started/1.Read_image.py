@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # path of file picture
-path = r"D:\Important files Nannaphat\coding\Project\Machine_Learning\python+opencv\learn\work_with_picture\started\geeksforgeeks.png"
+path = r"D:\Important files Nannaphat\coding\Project\Machine_Learning\python+opencv\learn\work_with_picture\1.Started\geeksforgeeks.png"
 
 # use library cv2 to show picture
 # read image not for get to use 'r' in front of directory picture
