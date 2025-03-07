@@ -37,6 +37,6 @@ img2 = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
 # just test print shape
 # structure (width, heigh, channels(value RGB) )
 print(img2.shape[:2])
-cv2.imshow('image', img2)
+cv2.imshow("image : ", img2)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
