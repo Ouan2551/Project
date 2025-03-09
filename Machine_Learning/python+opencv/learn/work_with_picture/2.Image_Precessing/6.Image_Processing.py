@@ -80,3 +80,96 @@ for ax in axs:
 # Display the subplots
 plt.tight_layout()
 plt.show()
+
+# 3) Image Translation
+image = cv2.imread(path)
+image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+width = image_rgb.shape[1]
+height = image_rgb.shape[0]
+
+tx = 100
+ty = 70
+
+# Translation matrix
+translation_matrix = np.array([[1, 0, tx], [0, 1, ty]], dtype=np.float32)
+# dtype mean matrix need specific data type to working
+# this case want floating point number (32 bit precision)
+
+# warpAffine does appropriate shifting given the Translation matrix.
+translated_image = cv2.warpAffine(image_rgb, translation_matrix, (width, height))
+
+# Create subplots
+fig, axs = plt.subplots(1, 2, figsize=(7, 4))
+
+# Plot the original image
+axs[0].imshow(image_rgb)
+axs[0].set_title('Original Image')
+
+# Plot the translate image
+axs[1].imshow(translated_image)
+axs[1].set_title('Image Translation')
+
+# Remove ticks from the subplots
+for ax in axs:
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+# Display the subplots
+plt.tight_layout()
+plt.show()
+
+# 4) Image Normalization (improve performance)
+image = cv2.imread(path)
+image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+# Split the image into channels
+b, g, r = cv2.split(image_rgb)
+
+# Normalization parameter
+min_value = 0
+max_value = 1
+norm_type = cv2.NORM_MINMAX
+
+# Normalize each channel
+b_normalized = cv2.normalize(b.astype('float'), None, min_value, max_value, norm_type)
+g_normalized = cv2.normalize(g.astype('float'), None, min_value, max_value, norm_type)
+r_normalized = cv2.normalize(r.astype('float'), None, min_value, max_value, norm_type)
+
+# Merge the normalized channels back into an image
+normalized_image = cv2.merge((b_normalized, g_normalized, r_normalized))
+# Normalized image
+print(normalized_image[:,:,0])
+
+plt.imshow(normalized_image)
+plt.xticks([])
+plt.yticks([])
+plt.title('Normalized Image')
+plt.show()
+
+# 5) Edge detection Image => detect sharp edges in image
+image = cv2.imread(path)
+image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+# Apply Canny edge detection
+edges = cv2.Canny(image= image_rgb, threshold1=100, threshold2=700)
+
+# Create subplots
+fig, axs = plt.subplots(1, 2, figsize=(7, 4))
+
+# Plot the original image
+axs[0].imshow(image_rgb)
+axs[0].set_title('Original Image')
+
+# Plot the blurred image
+axs[1].imshow(edges)
+axs[1].set_title('Image edges')
+
+# Remove ticks from the subplots
+for ax in axs:
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+# Display the subplots
+plt.tight_layout()
+plt.show()
