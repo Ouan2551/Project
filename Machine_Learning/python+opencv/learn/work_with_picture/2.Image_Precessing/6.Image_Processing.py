@@ -173,3 +173,58 @@ for ax in axs:
 # Display the subplots
 plt.tight_layout()
 plt.show()
+
+# 6) Morphological Image Processing = > set of python image processing
+# most use for eliminated noise, separate object, detect edges in image
+# two most common morphological operation are
+# 1) Dilation => expand boundaries of object in image
+# 2) Erosion => shrinks the boundaries of object in image
+
+image = cv2.imread(path)
+image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# Create a structuring element
+kernel = np.ones((3, 3), np.uint8)
+
+# Perform dilation
+dilated = cv2.dilate(image_gray, kernel, iterations=2)
+
+# Perform erosion
+eroded = cv2.erode(image_gray, kernel, iterations=2)
+
+# Perform opening (erosion followed by dilation)
+opening = cv2.morphologyEx(image_gray, cv2.MORPH_OPEN, kernel)
+
+# Perform closing (dilation followed by erosion)
+closing = cv2.morphologyEx(image_gray, cv2.MORPH_CLOSE, kernel)
+
+# Create subplots
+fig, axs = plt.subplots(2, 2, figsize=(7, 7))
+
+# Plot the Dilated Image
+axs[0,0].imshow(dilated, cmap='Greys')
+axs[0,0].set_title('Dilated Image')
+axs[0,0].set_xticks([])
+axs[0,0].set_yticks([])
+
+# Plot the Eroded Image
+axs[0,1].imshow(eroded, cmap='Greys')
+axs[0,1].set_title('Eroded Image')
+axs[0,1].set_xticks([])
+axs[0,1].set_yticks([])
+
+# Plot the opening (erosion followed by dilation)
+axs[1,0].imshow(opening, cmap='Greys')
+axs[1,0].set_title('Opening')
+axs[1,0].set_xticks([])
+axs[1,0].set_yticks([])
+
+# Plot the closing (dilation followed by erosion)
+axs[1,1].imshow(closing, cmap='Greys')
+axs[1,1].set_title('Closing')
+axs[1,1].set_xticks([])
+axs[1,1].set_yticks([])
+
+# Display the subplots
+plt.tight_layout()
+plt.show()
