@@ -1,3 +1,5 @@
+# Histogram equalization => image processing contrast adjustment use
+# image histogram it useful when image have bright or dark background and foreground
 import cv2
 import numpy as np
 
