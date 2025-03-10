@@ -6,7 +6,7 @@ image = cv2.imread(path)
 image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # create histogram equalization
-equalization = cv2.equalizeHist(image)
+equalization = cv2.equalizeHist(image_gray)
 
 # stack image side by side
 res = np.hstack((image_gray, equalization))
