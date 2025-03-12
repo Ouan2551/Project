@@ -15,8 +15,60 @@ vector<string> split(const string &);
  *  2. INTEGER_ARRAY b
  */
 
-int getTotalX(vector<int> a, vector<int> b) {
+int getTotalX(vector<int> a, vector<int> b)
+{
+    int a_size = a.size(), b_size = b.size();
+    // find min vector b
+    int min_b = INT_MAX;
+    for (int i = 0; i < b_size; i++)
+    {
+        min_b = min(min_b, b[i]);
+    }
+        
+    // b zone
+    vector<int> b_divisible;
+    for (int i = 2; i <= min_b; i++)
+    {
+        int count = 0;
+        for (int j = 0; j < b_size; j++)
+        {
+            if (b[j] % i == 0)
+            {
+                count++; cout << "b[j] " << b[j] << "i " << i << '\n';
+            }
+            else
+            {
+                count = 0;
+            }
+        }
+        if (count == b_size)
+        {
+            b_divisible.push_back(i);
+        }
+    }
+
+    // a zone
+    int count = 0, b_divisible_size = b_divisible.size();
+    for (int i = 0; i < b_divisible_size; i++)
+    {
+        cout << b_divisible[i] << '\n';
+    }
     
+    for (int i = 1; i <= 100; i++)
+    {
+        for (int j = 0; j < b_divisible_size; j++)
+        {
+            for (int m = 0; m < a_size; m++)
+            {
+                if (a[m] * j == b_divisible[j])
+                {
+                    count++;
+                }
+            }
+        }
+    }
+    
+    return count;
 }
 
 int main()
