@@ -59,4 +59,4 @@ contrast_stretched = pixelVal_vec(image, r1, s1, r2, s2)
 # Save edited image. 
 cv2.imshow("contrast", contrast_stretched)
 cv2.waitKey(0)
-cv2.destroyWindows()
+cv2.destroyAllWindows()
