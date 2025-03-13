@@ -22,7 +22,7 @@ for i in range(height):
         if image[i, j] > 0: # sum > 0 then pixel is not pure black
             image[i, j] = 0 # sum > 0 change to black
         else:
-            image[i, j] = [255, 255, 255] # sum = 0 change to white
+            image[i, j] = 255 # sum = 0 change to white
 
 # saving the mask
 mask = image
