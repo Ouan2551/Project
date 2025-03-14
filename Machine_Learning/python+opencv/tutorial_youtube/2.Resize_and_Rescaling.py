@@ -17,7 +17,6 @@ def changeResolution(width, height):
 # 1) resize video
 path_video = r'D:\Important files Nannaphat\coding\Project\Machine_Learning\python+opencv\tutorial_youtube\Videos\dog.mp4'
 video = cv2.VideoCapture(path_video)
-height, width = video.shape[:2]
 
 while True:
     isTrue, frame = video.read()
