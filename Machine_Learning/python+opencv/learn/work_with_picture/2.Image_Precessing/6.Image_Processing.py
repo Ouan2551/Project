@@ -152,11 +152,14 @@ image = cv2.imread(path)
 image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 # Apply Canny edge detection
-edges = cv2.Canny(image= image_rgb, threshold1=100, threshold2=700)
+edges = cv2.Canny(image= image_rgb, threshold1=100, threshold2=300)
+# if edge have value between threshold1 and threshold2 mean it is weak edge
+# just think like filter in mobile phone to create edge
+# best ratio for threshold is 1:2 or 1:3 e.g. threshold1 = 100, threshold2 = 200 or 300
 
 # Create subplots
-fig, axs = plt.subplots(1, 2, figsize=(7, 4))
-
+fig, axs = plt.subplots(1, 2, figsize=(8, 4))
+# fig is 1, axs is 2 (like rows and column)
 # Plot the original image
 axs[0].imshow(image_rgb)
 axs[0].set_title('Original Image')
