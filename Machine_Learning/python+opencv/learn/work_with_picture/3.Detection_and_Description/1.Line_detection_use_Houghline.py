@@ -12,7 +12,7 @@ gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 edges = cv2.Canny(gray_image, 50, 150, apertureSize=3)
 
 # return array of r and theta value
-lines = cv2.HoughLines(edges, 1, np.pi/180, 200)
+lines = cv2.HoughLines(edges, 1, np.pi/180, 100)
 
 # loop run till r and theta value in range 2d array
 for r_theta in lines:
