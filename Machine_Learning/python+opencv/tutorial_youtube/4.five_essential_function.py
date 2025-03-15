@@ -38,5 +38,6 @@ cv2.imshow("resize_Inter_Cubic", resize_Inter_Cubic)
 # 7) Cropping (50:200 mean select between 50 to 199) think like (x, y) to crop image
 crop = image[50:200, 200:400]
 cv2.imshow("crop_image", crop)
+
 if cv2.waitKey(0) & 0xFF == ord('d'):
     cv2.destroyAllWindows()
