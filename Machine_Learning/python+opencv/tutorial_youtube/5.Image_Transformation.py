@@ -34,13 +34,26 @@ rotation = rotate(image, 45)
 cv2.imshow("rotation", rotation)
 
 # 3) Resize
-resize = cv2.resize(image, dsize=(50,1000), interpolation=cv2.INTER_LINEAR)
+resize = cv2.resize(image, dsize=(50,100), interpolation=cv2.INTER_LANCZOS4)
+cv2.imshow("resize", resize)
 # at cv2. (command)
 #cv2.INTER_NEAREST => bad quality good for sharp image fast process
 #cv2.INTER_LINEAR => smooth image but have some blur
 #cv2.INTER_CUBIC => smoother image more than "linear" good quality but slower
 #cv2.INTER_LANCZOS4 => sharpest and most detail image slowest method 
 #cv2.INTER_AREA => use for shrinking image good for downscale image
+
+# 4) Flip
+flip = cv2.flip(image, flipCode=0) # 0 = y axis
+cv2.imshow("flip0", flip)
+flip = cv2.flip(image, flipCode=1) # 1 = x axis
+cv2.imshow("flip1", flip)
+flip = cv2.flip(image, flipCode=-1) # -1 = x and y axis
+cv2.imshow("flip-1", flip)
+
+# 5) Cropping
+crop = image[200:400, 300:400]
+cv2.imshow("crop", crop)
 
 if cv2.waitKey(0) & 0xFF == ord('d'):
     cv2.destroyAllWindows()
