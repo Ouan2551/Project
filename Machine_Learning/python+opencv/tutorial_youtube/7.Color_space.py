@@ -31,5 +31,8 @@ cv2.imshow("rgb_image", rgb_image)
 plt.imshow(rgb_image)
 plt.show()
 
+# warning if you want to convert color space e.g. HSV to LAB
+# you can't do it directly you need to convert to BGR before LAB
+
 if cv2.waitKey(0) & 0xFF == ord('d'):
     cv2.destroyAllWindows()
