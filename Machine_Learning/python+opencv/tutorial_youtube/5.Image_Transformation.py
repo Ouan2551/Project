@@ -36,7 +36,7 @@ cv2.imshow("rotation", rotation)
 # 3) Resize
 resize = cv2.resize(image, dsize=(50,100), interpolation=cv2.INTER_LANCZOS4)
 cv2.imshow("resize", resize)
-# at cv2. (command)
+# at cv2. (command) interpolation= use for set quality picture after you resize
 #cv2.INTER_NEAREST => bad quality good for sharp image fast process
 #cv2.INTER_LINEAR => smooth image but have some blur
 #cv2.INTER_CUBIC => smoother image more than "linear" good quality but slower

@@ -18,12 +18,14 @@ cv2.imshow("gray_image", gray_image)
 blur_image = cv2.blur(gray_image, ksize=(5,5), dst=cv2.BORDER_DEFAULT)
 cv2.imshow("blur_image", blur_image)
 
+# canny use for process object detection
 canny_no_blur = cv2.Canny(image, 125, 175)
 cv2.imshow("canny_no_blur", canny_no_blur)
 canny_with_blur = cv2.Canny(blur_image, 125, 175)
 cv2.imshow("canny_with_blur", canny_with_blur)
 
 ret, thresh = cv2.threshold(gray_image, thresh=125, maxval=255, type=cv2.THRESH_BINARY)
+# in type= just method use for to set pixel value
 cv2.imshow("thresh", thresh)
 # if value < 125 will set color to black
 # if value > 255 will set color to white
