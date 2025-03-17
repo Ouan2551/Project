@@ -17,9 +17,13 @@ gaussian = cv2.GaussianBlur(image, ksize=(3,3), sigmaX=0)
 cv2.imshow("gaussian", gaussian)
 
 # 3) Median Blur => like averaging blur but it find median value
-median = cv2.medianBlur(image, ksize=3)
+median = cv2.medianBlur(image, ksize=7)
 # use 3 (integer) not (3,3) (tuple) but it same but in another way
 cv2.imshow("median", median)
+
+# 4) bilateral
+bilateral = cv2.bilateralFilter(image, d=5, sigmaColor=15, sigmaSpace=15)
+cv2.imshow("bilateral", bilateral)
 
 if cv2.waitKey(0) & 0xFF == ord('d'):
     cv2.destroyAllWindows()
