@@ -23,6 +23,9 @@ cv2.imshow("median", median)
 
 # 4) bilateral
 bilateral = cv2.bilateralFilter(image, d=5, sigmaColor=15, sigmaSpace=15)
+# d=5 is same ksize but it integer not tuple
+# sigmaColor = 15 color pixel value that have significant influence
+# sigmaSpace = 15 pixel have distant 15 pixel from center will have significant influence
 cv2.imshow("bilateral", bilateral)
 
 if cv2.waitKey(0) & 0xFF == ord('d'):
