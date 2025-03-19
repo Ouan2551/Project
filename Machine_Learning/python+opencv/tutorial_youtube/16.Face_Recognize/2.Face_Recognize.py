@@ -7,11 +7,11 @@ haar_face_cascade = cv2.CascadeClassifier(path_haar_face_xml)
 
 # load file creat from "1.Face_train.py"
 path_features = r'D:\Important files Nannaphat\coding\Project\Machine_Learning\python+opencv\tutorial_youtube\16.Face_Recognize\features.npy'
-features = np.load(path_features)
+features = np.load(path_features, allow_pickle=True)
 path_labels = r'D:\Important files Nannaphat\coding\Project\Machine_Learning\python+opencv\tutorial_youtube\16.Face_Recognize\labels.npy'
 labels = np.load(path_labels)
 
-face_recognize = cv2.face.LBPHFaceRecognizer_create()
+face_recognize = cv2.face.LBPHFaceRecognizer.create()
 face_recognize_path = r'D:\Important files Nannaphat\coding\Project\Machine_Learning\python+opencv\tutorial_youtube\16.Face_Recognize\face_trained.yml'
 face_recognize.read(face_recognize_path)
 
@@ -25,7 +25,7 @@ cv2.imshow("person", gray_image)
 
 # detect zone
 faces_rect = haar_face_cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=4)
-for (x,y,h,w) in face_recognize(faces_rect):
+for (x,y,h,w) in faces_rect:
     faces_roi = gray_image[y:y+h, x:x+w]
     
     label, confidence = face_recognize.predict(faces_roi)
