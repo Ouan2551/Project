@@ -3,7 +3,7 @@
 
 import cv2
 # setup
-path = r'D:\Important files Nannaphat\coding\Project\Machine_Learning\python+opencv\tutorial_youtube\Photos\lady.jpg'
+path = r'D:\Important files Nannaphat\coding\Project\Machine_Learning\python+opencv\tutorial_youtube\Photos\group 1.jpg'
 image = cv2.imread(path)
 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -12,7 +12,7 @@ path_haar_face_xml = r'D:\Important files Nannaphat\coding\Project\Machine_Learn
 haar_face_cascade = cv2.CascadeClassifier(path_haar_face_xml)
 
 # detective
-face_rect = haar_face_cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=3)
+face_rect = haar_face_cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=1)
 print("Number face found : ", len(face_rect))
 
 # draw rectangle over face
