@@ -29,7 +29,7 @@ for (x,y,h,w) in faces_rect:
     faces_roi = gray_image[y:y+h, x:x+w]
     
     label, confidence = face_recognize.predict(faces_roi)
-    print("label = ", people[label], " with a confidence of = ", confidence)
+    print("label : ", people[label], " with a confidence of = ", confidence)
     
     cv2.putText(image, text=str(people[label]), org=(20,20), fontFace=cv2.FONT_HERSHEY_COMPLEX, fontScale=1.0
                 , color=(0,255,0), thickness=2)
