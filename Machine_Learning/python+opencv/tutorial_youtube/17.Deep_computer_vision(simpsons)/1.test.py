@@ -4,7 +4,7 @@ import os
 import caer
 import gc
 import matplotlib.pyplot as plt
-import tensorflow as tf
+from tensorflow.keras.utils import to_categorical
 
 # change image size before process
 image_size = (80, 80) # best value for data set
@@ -16,6 +16,10 @@ char_path = r'D:\Important files Nannaphat\coding\Project\Machine_Learning\pytho
 char_dict = {}
 for char in os.listdir(char_path):
     char_dict[char] = len(os.listdir(os.path.join(char_path, char)))
+# The `for i in char_dict:` loop is iterating over the keys of the `char_dict` dictionary. In each
+# iteration, `i` represents a key in the dictionary, which in this case is the name of a character
+# from the Simpsons family. This loop is used to extract the character names and process them further
+# in the code.
 for i in char_dict:
     print(char_dict[i])
     
