@@ -5,6 +5,7 @@ import caer
 import gc
 import matplotlib.pyplot as plt
 from tensorflow.keras.utils import to_categorical
+import canaro
 
 # change image size before process
 image_size = (80, 80) # best value for data set
@@ -55,3 +56,18 @@ featureSet, labels = caer.sep_train(train, IMG_SIZE=image_size)
 
 # normalize featuresSet => (0,1) (normalize for faster learn of model)
 featureSet = caer.normalize(featureSet) # convert from numerical integer to binary class vector
+# use tensorflow library
+labels = to_categorical(labels, len(characters))
+
+# training and validation data => model train and test yourself on this
+x_train, x_val, y_train, y_val = caer.train_val_split(X=featureSet, y=labels, val_ratio=.2)
+# at val_ratio = .2 mean 20% of data go to validation set, 80% of data to training set
+
+# delete some data will not use again (but I not want to remove)
+# del train
+# del featureSet
+# del labels
+# gc.collect()
+
+# Image data generator => made some of random data
+datagen = canaro.generators.imageDataGenerator()
