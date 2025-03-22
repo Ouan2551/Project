@@ -92,3 +92,16 @@ training = model.fit(train_gen, steps_per_epoch=len(x_train//BATCH_SIZE), epochs
                     validation_steps = len(y_val)//BATCH_SIZE, callbacks = callbacks_list)
 
 # test how good of model
+test_path = r'D:\Important files Nannaphat\coding\Project\Machine_Learning\python+opencv\tutorial_youtube\17.Deep_computer_vision(simpsons)\simpsons_data_set\kaggle_simpson_testset\kaggle_simpson_testset\abraham_grampa_simpson_0.jpg'
+image_test = cv2.imread(test_path)
+# change image_test to make it how you change and prepare for data set
+def prepare(image=image_test):
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    image = cv2.resize(image, dsize=image_size)
+    image = caer.reshape(image, IMG_SIZE=image_size, channels=1)
+    return image
+
+# predict image
+prediction = model.predict(prepare(image_test)) # call function prepare image
+print(prediction)
+print(characters[np.argmax(prediction[0])]) # this line use for get real value not like array from prediction
