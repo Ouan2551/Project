@@ -5,7 +5,9 @@ import caer
 import gc
 import matplotlib.pyplot as plt
 from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.callbacks import LearningRateScheduler
 import canaro
+import scipy
 
 # change image size before process
 image_size = (80, 80) # best value for data set
@@ -70,4 +72,23 @@ x_train, x_val, y_train, y_val = caer.train_val_split(X=featureSet, y=labels, va
 # gc.collect()
 
 # Image data generator => made some of random data
-datagen = canaro.generators.imageDataGenerator()
+data_gen = canaro.generators.imageDataGenerator()
+BATCH_SIZE = 32
+EPOCHS = 10
+train_gen = data_gen.flow(x_train, y_train, batch_size = BATCH_SIZE)
+
+# Creating model
+model = canaro.models.createSimpsonsModel(IMG_SIZE=image_size, channels=channels, output_dim=len(characters)
+                                        , loss='binary_crossentropy', decay=1e-6, learning_rate=0.001,
+                                        momentum=0.9, nesterov=True)
+print("____________________________________")
+model.summary()
+
+# creat callback list => contain something like learning rate
+callbacks_list = [LearningRateScheduler(canaro.lr_schedule)]
+
+# train model
+training = model.fit(train_gen, steps_per_epoch=len(x_train//BATCH_SIZE), epochs=EPOCHS, validation_data = (x_val, y_val),
+                    validation_steps = len(y_val)//BATCH_SIZE, callbacks = callbacks_list)
+
+# test how good of model
