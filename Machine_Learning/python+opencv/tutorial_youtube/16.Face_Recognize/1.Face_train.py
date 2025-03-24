@@ -1,5 +1,6 @@
 import os
 import cv2
+import cv2.face
 import numpy as np
 
 # list people
