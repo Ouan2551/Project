@@ -59,21 +59,22 @@ int getTotalX(vector<int> a, vector<int> b)
     for (int i = 1; i <= 100; i++)
     {
         // a zone
+        int check_result[2] = {0};
         for (int j = 0; j < a_size; j++)
         {
-            int check_result = a[j] * i;
+            check_result[j] = a[j] * i;
+            // problem find that way to check number
+            // when it multiply and then equal
             // b zone
-            for (int m = 0; m < b_divisible_size; m++)
-            {
-                if (check_result == b_divisible[m])
-                {
+            // for (int m = 0; m < b_divisible_size; m++)
+            // {
+            //     if (check_result[j] == b_divisible[m])
+            //     {
 
-                }
+            //     }
                 
-            }
-            
+            // }
         }
-        
     }
     
 }
