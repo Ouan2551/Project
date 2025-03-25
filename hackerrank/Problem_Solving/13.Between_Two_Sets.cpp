@@ -56,30 +56,26 @@ int getTotalX(vector<int> a, vector<int> b)
 
     // a zone
     // check a[m] to main loop
-    int count_chk = 0;
-    for (int i = 0; i <= b_divisible_size; i++)
+    for (int i = 1; i <= 100; i++)
     {
-        int j = 1;
-            for (int m = 1; m <= a_size; m++)
+        // a zone
+        for (int j = 0; j < a_size; j++)
+        {
+            int check_result = a[j] * i;
+            // b zone
+            for (int m = 0; m < b_divisible_size; m++)
             {
-                if (a[m] * j == b_divisible[i])
+                if (check_result == b_divisible[m])
                 {
-                    count++;
-                    cout << "a[m] * j => " << a[m] * j << '\n';
-                    cout << "b_divisible[i]" << b_divisible[i] << '\n';
-                    cout << "chk : " << count << '\n';
-                    cout << "__________________" << '\n';
+
                 }
+                
             }
-            if (count == a_size)
-            {
-                count_chk++; count = 0; 
-            }
-            count = 0;
-        j++;
+            
+        }
+        
     }
-    cout << "count_chk : " << count_chk;
-    return count_chk;
+    
 }
 
 int main()
