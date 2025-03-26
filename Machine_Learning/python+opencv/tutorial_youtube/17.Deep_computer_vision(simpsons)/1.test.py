@@ -99,6 +99,7 @@ def prepare(image=image_test):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     image = cv2.resize(image, dsize=image_size)
     image = caer.reshape(image, IMG_SIZE=image_size, channels=1)
+    image = np.expand_dims(image, axis=0)
     return image
 
 # predict image

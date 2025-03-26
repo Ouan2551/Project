@@ -1,3 +1,2 @@
-cars = ["Ford", "Volvo", "BMW"]
-
-print(cars)
+import tensorflow as tf
+print(tf.config.list_physical_devices('GPU'))
