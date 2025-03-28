@@ -1,0 +1,4 @@
+train : D:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\train\images\train
+val : D:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\train\labels
+nc : 2
+names : ['Cat', 'Dog']
