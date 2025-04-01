@@ -1,8 +1,8 @@
 task: detect
 mode: train
 model: yolov8n.pt
-data: D:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\train\data.yml
-epochs: 50
+data: D:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\dataset_train\data.yml
+epochs: 5
 time: null
 patience: 100
 batch: 16
