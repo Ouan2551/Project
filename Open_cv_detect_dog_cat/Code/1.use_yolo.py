@@ -4,7 +4,7 @@ import cv2
 # Load YOLO model
 model = YOLO("yolov8n.pt")  # 'yolov8n.pt' is a pre-trained model
 
-# Load an image
+# Load an imaธge
 image = cv2.imread(r"D:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\Data_Set\Dog\2.jpg")
 
 # Run YOLO detection

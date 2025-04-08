@@ -11,7 +11,7 @@ import scipy
 
 # change image size before process
 image_size = (80, 80) # best value for data set
-channels = 1
+channels = 1 # 1 => gray_scale , 3 => rgb
 # path file picture for train
 char_path = r'D:\Important files Nannaphat\coding\Project\Machine_Learning\python+opencv\tutorial_youtube\17.Deep_computer_vision(simpsons)\simpsons_data_set\simpsons_dataset'
 
@@ -21,16 +21,17 @@ for char in os.listdir(char_path):
     char_dict[char] = len(os.listdir(os.path.join(char_path, char)))
 # The `for i in char_dict:` loop is iterating over the keys of the `char_dict` dictionary. In each
 # iteration, `i` represents a key in the dictionary, which in this case is the name of a character
-# from the Simpsons family. This loop is used to extract the character names and process them further
+# from the Simpsons family. This loop is used to extract the character names and process them further 
 # in the code.
 for i in char_dict:
     print(char_dict[i])
-    
+
 # sort in descending order
 char_dict = caer.sort_dict(char_dict, descending=True)
 print(char_dict)
 
 # gray name of character
+# take top 10 characters with most pictures
 characters = []
 count = 0
 for i in char_dict:
@@ -98,7 +99,8 @@ image_test = cv2.imread(test_path)
 def prepare(image=image_test):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     image = cv2.resize(image, dsize=image_size)
-    image = caer.reshape(image, IMG_SIZE=image_size, channels=1)
+    # image = np.reshape(image, IMG_SIZE=image_size, channels=1)
+    image = np.reshape(image, (image_size[0], image_size[1], 1))
     image = np.expand_dims(image, axis=0)
     return image
 
