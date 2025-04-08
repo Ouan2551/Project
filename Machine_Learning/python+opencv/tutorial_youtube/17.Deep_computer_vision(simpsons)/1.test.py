@@ -31,7 +31,7 @@ char_dict = caer.sort_dict(char_dict, descending=True)
 print(char_dict)
 
 # gray name of character
-# take top 10 characters with most pictures
+# take top 10 characters (use some classes for less data train)
 characters = []
 count = 0
 for i in char_dict:
@@ -41,10 +41,14 @@ for i in char_dict:
         break
     
 print(characters)
+# or use all of classes use this command
+# characters = [char[0] for char in char_dict]
+# or use this full version
+# for char in char_dict:
+#     characters = [char[0]]
 
 # creat training data
 train = caer.preprocess_from_dir(DIR=char_path, classes=characters, channels=channels,IMG_SIZE=image_size, isShuffle=True)
-
 # check how many picture in train
 print("picture count : ", len(train))
 
