@@ -103,8 +103,8 @@ x_train, x_val, y_train, y_val = caer.train_val_split(X=featureSet, y=labels, va
 
 # image data generator
 data_gen = canaro.generators.imageDataGenerator()
-BATCH_SIZES = 32
-EPOCHS_val = 100
+BATCH_SIZES = 50
+EPOCHS_val = 1
 # train_gen = data_gen.flow(x_train, y_train, BATCH_SIZE = BATCH_SIZES)
 train_gen = data_gen.flow(x_train, y_train, BATCH_SIZES)
 
@@ -118,5 +118,10 @@ model.summary()
 callback_list = [LearningRateScheduler(canaro.lr_schedule)]
 
 # train model
-training = model.fit(train_gen, steps_per_epoch = len(x_train//BATCH_SIZES), EPOCHS = EPOCHS_val, validation_data = (x_val, y_val),
+training = model.fit(train_gen, steps_per_epoch = len(x_train)//BATCH_SIZES, epochs = EPOCHS_val, validation_data = (x_val, y_val),
                     validation_steps = len(y_val)//BATCH_SIZES, callbacks = callback_list)
+
+# save model
+model_save_path = r'D:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\model\dog_cat_model.h5'
+model.save(model_save_path)
+print("save successful")
