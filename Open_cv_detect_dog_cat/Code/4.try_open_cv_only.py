@@ -104,7 +104,7 @@ x_train, x_val, y_train, y_val = caer.train_val_split(X=featureSet, y=labels, va
 # image data generator
 data_gen = canaro.generators.imageDataGenerator()
 BATCH_SIZES = 50
-EPOCHS_val = 1
+EPOCHS_val = 100
 # train_gen = data_gen.flow(x_train, y_train, BATCH_SIZE = BATCH_SIZES)
 train_gen = data_gen.flow(x_train, y_train, BATCH_SIZES)
 
