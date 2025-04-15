@@ -3,7 +3,7 @@ import numpy as np
 from tensorflow.keras.models import load_model #type: ignore
 
 # load model from patch
-loaded_model = load_model(r"D:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\model\dog_cat_model.h5")
+loaded_model = load_model(r"D:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\model\dog_cat_model1.h5")
 
 # output to check model
 loaded_model.summary()
