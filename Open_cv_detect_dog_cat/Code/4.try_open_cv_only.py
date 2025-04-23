@@ -48,46 +48,6 @@ for cls in characters:
 train = caer.preprocess_from_dir(DIR=character_path, classes=characters, channels=channels, IMG_SIZE=image_size, isShuffle=True)
 print("picture count : ", len(train))
 
-# use this instead for skip picture
-# def load_data(character_path, characters, image_size, channels=1):
-#     data = []
-
-#     for label, cls in enumerate(characters):
-#         path = os.path.join(character_path, cls)
-#         for img_name in os.listdir(path):
-#             full_path = os.path.join(path, img_name)
-
-#             try:
-#                 # Read image
-#                 img = cv2.imread(full_path)
-
-#                 if img is None or img.size == 0:
-#                     print("Skipping unreadable image:", full_path)
-#                     continue
-
-#                 # Convert to grayscale if needed
-#                 if channels == 1:
-#                     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-#                 # Resize image
-#                 img = cv2.resize(img, image_size)
-
-#                 data.append([img, label])
-
-#             except Exception as e:
-#                 print(f"Error reading {full_path}: {e}")
-#                 continue
-
-#     return caer.shuffle(data)
-
-# Replace this:
-# train = caer.preprocess_from_dir(DIR=character_path, classes=characters, channels=channels, IMG_SIZE=image_size, isShuffle=True)
-
-# With this:
-# train = load_data(character_path, characters, image_size, channels=channels)
-# print("picture count:", len(train))
-# ------------------------------------------------------------------
-
 # visualize some image in data set
 plt.figure(figsize=(30, 30))
 plt.imshow(train[0][0], cmap='gray')
