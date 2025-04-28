@@ -22,6 +22,7 @@ for char in os.listdir(character_path):
 
 for i in character_dict:
     print(character_dict[i])
+
 # sort name
 character_dict = caer.sort_dict(character_dict, descending=True)
 print(character_dict)
@@ -43,8 +44,7 @@ for cls in characters:
         if img is None:
             print("Unreadable image:", full_path)
 
-# ------------------------------------------------------------------
-# creat training data (not skip some picture that can't read)
+# creat training data (delete picture that can't read)
 train = caer.preprocess_from_dir(DIR=character_path, classes=characters, channels=channels, IMG_SIZE=image_size, isShuffle=True)
 print("picture count : ", len(train))
 
