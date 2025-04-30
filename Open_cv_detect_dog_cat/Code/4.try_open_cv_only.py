@@ -13,7 +13,7 @@ from tensorflow.keras.callbacks import LearningRateScheduler # type: ignore
 # setup image size, channels, character_path
 image_size = (80, 80)
 channels = 1
-character_path = r"D:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\Data"
+character_path = r"C:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\Data"
 
 # import all name character to character_dict
 character_dict = {}
@@ -44,7 +44,7 @@ for cls in characters:
         if img is None:
             print("Unreadable image:", full_path)
 
-# creat training data (delete picture that can't read)
+# create training data (delete picture that can't read)
 train = caer.preprocess_from_dir(DIR=character_path, classes=characters, channels=channels, IMG_SIZE=image_size, isShuffle=True)
 print("picture count : ", len(train))
 
@@ -68,7 +68,7 @@ EPOCHS_val = 200
 # train_gen = data_gen.flow(x_train, y_train, BATCH_SIZE = BATCH_SIZES)
 train_gen = data_gen.flow(x_train, y_train, BATCH_SIZES)
 
-# creat cnn
+# create cnn
 model = canaro.models.createSimpsonsModel(IMG_SIZE=image_size, channels=channels, output_dim=len(characters), loss='binary_crossentropy',
                                         decay=1e-6, learning_rate=0.001, momentum=0.9, nesterov=True)
 print("______________________________________")
@@ -82,6 +82,6 @@ training = model.fit(train_gen, steps_per_epoch = len(x_train)//BATCH_SIZES, epo
                     validation_steps = len(y_val)//BATCH_SIZES, callbacks = callback_list)
 
 # save model
-model_save_path = r'D:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\model\dog_cat_model1.h5'
-model.save(model_save_path)
-print("save successful")
+# model_save_path = r'D:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\model\dog_cat_model1.h5'
+# model.save(model_save_path)
+# print("save successful")
