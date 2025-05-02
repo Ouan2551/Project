@@ -2,9 +2,7 @@ import cv2
 import numpy as np
 import os
 import caer
-import gc
 import canaro
-import scipy
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.keras.utils import to_categorical # type: ignore
