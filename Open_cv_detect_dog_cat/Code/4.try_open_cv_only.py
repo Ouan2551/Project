@@ -35,9 +35,9 @@ print(characters)
 
 # Test if all image paths are valid
 for cls in characters:
-    path = os.path.join(character_path, cls)
-    for img_name in os.listdir(path):
-        full_path = os.path.join(path, img_name)
+    path = os.path.join(character_path, cls) # build full directory class
+    for img_name in os.listdir(path): # loop image file name in class folder
+        full_path = os.path.join(path, img_name) # build full path picture
         img = cv2.imread(full_path)
         if img is None:
             print("Unreadable image:", full_path)
