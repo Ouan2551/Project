@@ -27,10 +27,10 @@ print(character_dict)
 
 # get characters (i use all of them)
 characters = []
-count = 0
+# count = 0
 for char in character_dict:
     characters.append(char[0])
-    count += 1
+    # count += 1
 print(characters)
 
 # Test if all image paths are valid
