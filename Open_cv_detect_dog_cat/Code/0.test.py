@@ -32,5 +32,7 @@ for i in characters:
 train = caer.preprocess_from_dir(DIR=char_path, classes=characters, IMG_SIZE=picture, channels=channels, isShuffle=True)
 
 feature_set, labels = caer.sep_train(data=train, IMG_SIZE=picture)
-labels = caer.normalize(labels)
-feature_set = caer.to_categorical(feature_set)
+feature_set = caer.normalize(feature_set)
+labels = to_categorical(labels, len(characters))
+
+x_train, x_val, label_train, label_val = caer.train_val_split(X=feature_set, y=labels, val_ratio=.2)
