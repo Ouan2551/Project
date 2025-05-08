@@ -1,38 +1,42 @@
 import cv2
-import numpy as np
-import os
+import tensorflow as tf
 import caer
 import canaro
-import tensorflow as tf
+import numpy as np
+import os
 from tensorflow.keras.utils import to_categorical #type: ignore
 from tensorflow.keras.callbacks import LearningRateScheduler #type: ignore
 
-char_path = r""
-channels = 1
-picture = [80, 80]
+image_size = (80,80)
+char_path = r"C:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\Data"
 char_dict = {}
+channels = 1
 
 for i in os.listdir(char_path):
     char_dict[i] = len(os.listdir(os.path.join(char_path, i)))
+    print(i)
 
 char_dict = caer.sort_dict(char_dict, descending=True)
 
 characters = []
 for i in char_dict:
     characters.append(i[0])
+print(characters)
 
-for i in characters:
+for i in os.listdir(char_path):
     path = os.path.join(char_path, i)
     for j in os.listdir(path):
-        path_picture = os.path.join(path, j)
-        picture = cv2.imread(path_picture)
-        if picture is None:
-            cv2.imshow("error image : ", path_picture)
+        path_image = os.path.join(path, j)
+        image = cv2.imread(path_image)
+        if image is None:
+            cv2.imshow("error image : ", path_image)
+            
+train = caer.preprocess_from_dir(DIR=char_path, classes=characters, IMG_SIZE=image_size, channels=channels, isShuffle=True)
+print(len(train))
 
-train = caer.preprocess_from_dir(DIR=char_path, classes=characters, IMG_SIZE=picture, channels=channels, isShuffle=True)
-
-feature_set, labels = caer.sep_train(data=train, IMG_SIZE=picture)
+feature_set, labels = caer.sep_train(train, IMG_SIZE=image_size)
 feature_set = caer.normalize(feature_set)
-labels = to_categorical(labels, len(characters))
+labels = to_categorical(labels, len(train))
 
-x_train, x_val, label_train, label_val = caer.train_val_split(X=feature_set, y=labels, val_ratio=.2)
+x_train, x_val, labels_train, labels_val = caer.train_val_split(X=feature_set, y=labels, val_ratio=0.2)
+
