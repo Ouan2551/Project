@@ -34,3 +34,18 @@ train = caer.preprocess_from_dir(DIR=char_dict, classes=characters, IMG_SIZE=ima
 feature_set, labels = caer.sep_train(train, IMG_SIZE=image_size)
 feature_set = caer.normalize(feature_set)
 labels = to_categorical(labels, len(train))
+
+x_train, x_val, labels_train, labels_val = caer.train_val_split(X=feature_set, y=labels, val_ratio=0.2)
+
+data_gen = canaro.generators.imageDataGenerator()
+batch_size = 50
+epochs_val = 200
+train_gen = data_gen.flow(x_train, labels_train, batch_size)
+
+model = canaro.models.createSimpsonsModel(IMG_SIZE=image_size, channels=channels, output_dim=len(characters), loss='binary_crossentropy',
+                                        decay=1e-6, learning_rate=0.001, momentum=0.9, nesterov=True)
+model.summary()
+
+callbacks_list = [LearningRateScheduler(canaro.lr_schedule)]
+training = model.fit(train_gen, steps_per_epoch = len(x_train//batch_size), epochs = epochs_val, validation_data = (x_val, labels_val)
+                    , validation_steps = len(x_val//batch_size), callbacks = callbacks_list)
