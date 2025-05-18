@@ -80,6 +80,6 @@ training = model.fit(train_gen, steps_per_epoch = len(x_train)//BATCH_SIZES, epo
                     validation_steps = len(y_val)//BATCH_SIZES, callbacks = callback_list)
 
 # save model
-model_save_path = r'D:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\model\dog_cat_model2.h5'
+model_save_path = r'C:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\model\dog_cat_model2.h5'
 model.save(model_save_path)
 print("save successful")
