@@ -57,14 +57,14 @@ featureSet = caer.normalize(featureSet)
 labels = to_categorical(labels, len(characters))
 
 # splitting data into training and validation set
-x_train, x_val, y_train, y_val = caer.train_val_split(X=featureSet, y=labels, val_ratio=.2)
+x_train, x_val, labels_train, labels_val = caer.train_val_split(X=featureSet, y=labels, val_ratio=.2)
 
 # image data generator
 data_gen = canaro.generators.imageDataGenerator()
 BATCH_SIZES = 16
 EPOCHS_val = 200
-# train_gen = data_gen.flow(x_train, y_train, BATCH_SIZE = BATCH_SIZES)
-train_gen = data_gen.flow(x_train, y_train, BATCH_SIZES)
+# train_gen = data_gen.flow(x_train, labels_train, BATCH_SIZE = BATCH_SIZES)
+train_gen = data_gen.flow(x_train, labels_train, BATCH_SIZES)
 
 # create cnn
 model = canaro.models.createSimpsonsModel(IMG_SIZE=image_size, channels=channels, output_dim=len(characters), loss='binary_crossentropy',
@@ -76,8 +76,8 @@ model.summary()
 callback_list = [LearningRateScheduler(canaro.lr_schedule)]
 
 # train model
-training = model.fit(train_gen, steps_per_epoch = len(x_train)//BATCH_SIZES, epochs = EPOCHS_val, validation_data = (x_val, y_val),
-                    validation_steps = len(y_val)//BATCH_SIZES, callbacks = callback_list)
+training = model.fit(train_gen, steps_per_epoch = len(x_train)//BATCH_SIZES, epochs = EPOCHS_val, validation_data = (x_val, labels_val),
+                    validation_steps = len(labels_val)//BATCH_SIZES, callbacks = callback_list)
 
 # save model
 model_save_path = r'C:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\model\dog_cat_model2.h5'
