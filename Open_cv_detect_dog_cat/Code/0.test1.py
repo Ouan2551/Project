@@ -1,47 +1,54 @@
 import cv2
 import numpy as np
-from tensorflow.keras.models import load_model #type: ignore
+from tensorflow.keras.models import load_model  # type: ignore
 
-# Load your model
-loaded_model = load_model(r"C:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\model\dog_cat_model1.h5")
+# Load model
+model = load_model(r"C:\Important files Nannaphat\coding\Project\Open_cv_detect_dog_cat\model\dog_cat_model2.h5")
+model.summary()
 
 # Class names
-characters = ["Cat", "Dog"]
+classes = ["Cat", "Dog"]
 image_size = (80, 80)
 
-# Read image
-img = cv2.imread(r"C:\Important files Nannaphat\picture\1736774455395.jpg")
-img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-img_resized = cv2.resize(img_gray, image_size)  # Resize for model input
+# Start webcam
+cap = cv2.VideoCapture(0)
 
-# Prepare image for prediction
-img_input = img_resized.reshape(-1, image_size[0], image_size[1], 1) / 255.0
+if not cap.isOpened():
+    print("Error: Could not open webcam.")
+    exit()
 
-# Predict class
-prediction = loaded_model.predict(img_input)
-predicted_class = np.argmax(prediction)
-label = characters[predicted_class]
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        print("Failed to capture frame")
+        break
 
-# Draw rectangle around the whole image
-height, width, _ = img.shape
-start_point = (0, 0)
-end_point = (width - 1, height - 1)
-color = (0, 255, 0)  # Green color for rectangle
-thickness = 2
+    # Convert frame to grayscale
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-cv2.rectangle(img, start_point, end_point, color, thickness)
+    # Resize to match model input
+    resized = cv2.resize(gray, image_size)
 
-# Put text (label) on top-left corner
-font = cv2.FONT_HERSHEY_SIMPLEX
-font_scale = 1
-font_thickness = 2
-text_color = (0, 255, 0)
+    # Preprocess
+    img = resized.reshape(-1, image_size[0], image_size[1], 1)
+    img = img / 255.0
 
-# Position for text
-text_position = (10, 30)
-cv2.putText(img, label, text_position, font, font_scale, text_color, font_thickness)
+    # Predict
+    prediction = model.predict(img)
+    predicted_class = np.argmax(prediction)
+    confidence = prediction[0][predicted_class]
 
-# Show image
-cv2.imshow("Prediction", img)
-cv2.waitKey(0)
+    # Display label
+    label = f"{classes[predicted_class]} ({confidence*100:.2f}%)"
+    cv2.putText(frame, label, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
+    # Show frame
+    cv2.imshow("Dog vs Cat Detection", frame)
+
+    # Exit when 'q' is pressed
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+# Release
+cap.release()
 cv2.destroyAllWindows()
