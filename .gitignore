@@ -4,3 +4,4 @@ Open_cv_detect_dog_cat/Data_Set/kagglecatsanddogs_5340.zip
 Open_cv_detect_dog_cat/model/dog_cat_model.h5
 Open_cv_detect_dog_cat/model/dog_cat_model1.h5
 Open_cv_detect_dog_cat/model/dog_cat_model2.h5
+student_chk/model/detect_people_model1.h5
